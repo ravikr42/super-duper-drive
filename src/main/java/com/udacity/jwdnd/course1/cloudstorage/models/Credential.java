@@ -4,9 +4,9 @@ public class Credential {
     private Integer credentialId;
     private String url;
     private String userName;
-    private String key;
+    private String keya;
     private String password;
-    private String userId;
+    private Integer userId;
 
 
     public Integer getCredentialId() {
@@ -33,12 +33,12 @@ public class Credential {
         this.userName = userName;
     }
 
-    public String getKey() {
-        return key;
+    public String getKeya() {
+        return keya;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setKeya(String keya) {
+        this.keya = keya;
     }
 
     public String getPassword() {
@@ -49,19 +49,19 @@ public class Credential {
         this.password = password;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public Credential(Integer credentialId, String url, String userName, String key, String password, String userId) {
+    public Credential(Integer credentialId, String url, String userName, String keya, String password, Integer userId) {
         this.credentialId = credentialId;
         this.url = url;
         this.userName = userName;
-        this.key = key;
+        this.keya = keya;
         this.password = password;
         this.userId = userId;
     }

@@ -15,4 +15,7 @@ public interface UserMapper {
             "(#{username}, #{salt}, #{password}, #{firstname}, #{lastname})")
     @Options(useGeneratedKeys = true, keyProperty = "userid")
     int insert(User user);
+
+    @Select("Select userid from users where username = #{username}")
+    Integer getUserIdByName(String username);
 }
