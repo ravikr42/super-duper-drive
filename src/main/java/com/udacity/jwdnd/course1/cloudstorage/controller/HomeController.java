@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping(value = {"/home", "/"})
 public class HomeController {
 
     private UserService userService;
@@ -41,8 +41,6 @@ public class HomeController {
         List<FileDoc> files = fileService.getFilesByUserId(userId);
         List<Note> notes = noteService.getNotesByUserId(userId);
         List<Credential> credentials = credentialService.getCredentialsListById(userId);
-
-
         model.addAttribute("username", StringUtils.capitalize(auth.getName()));
         model.addAttribute("encryptionService", encryptionService);
         model.addAttribute("files", files);

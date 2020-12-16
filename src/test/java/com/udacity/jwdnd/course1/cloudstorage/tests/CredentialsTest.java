@@ -38,7 +38,7 @@ public class CredentialsTest {
     }
 
     @BeforeEach
-    public void init() {
+    public void init() throws InterruptedException {
         this.driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, SECONDS);
         driver.manage().window().maximize();
@@ -58,7 +58,7 @@ public class CredentialsTest {
         signUpPage.signUpUser(faker.name().firstName(), faker.name().lastName(), userName, password);
         logger.info("UserName is : " + userName);
         logger.info("Password is : " + password);
-        loginPage.openLoginPage("http://localhost:" + this.port + "/login");
+        Thread.sleep(2000);
         loginPage.login(userName, password);
         Assertions.assertTrue(homePage.verifyLogin());
     }

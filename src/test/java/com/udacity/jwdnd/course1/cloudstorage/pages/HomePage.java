@@ -147,7 +147,6 @@ public class HomePage extends PageObject {
         webDriverUtil.waitByVisibility(noteModalLabel, 15);
         noteTitleTxtBox.clear();
         noteTitleTxtBox.sendKeys(title);
-        noteDescTextBox.sendKeys(new Faker().lorem().paragraph());
         noteSaveBtn.click();
     }
 

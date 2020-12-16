@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.tests;
 
+import com.github.javafaker.Faker;
 import com.udacity.jwdnd.course1.cloudstorage.pages.HomePage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.SignUpPage;
@@ -32,6 +33,7 @@ public class LoginSignUpTest {
     private HomePage homePage;
     private String userName;
     private String password;
+    private Faker faker;
 
     @BeforeAll
     static void beforeAll() {
@@ -48,6 +50,7 @@ public class LoginSignUpTest {
         signUpPage = new SignUpPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
+        faker = new Faker();
     }
 
     @AfterEach
@@ -77,12 +80,12 @@ public class LoginSignUpTest {
     public void SignUpAndLoginTest() throws InterruptedException {
         signUpPage.openSignUpPage("http://localhost:" + this.port + "/signup");
         Assertions.assertTrue(signUpPage.isSignUpPage());
-        userName = RandomStringUtils.randomAlphanumeric(10);
+        userName = faker.name().username();
         password = RandomStringUtils.randomAlphanumeric(12);
-        signUpPage.signUpUser("Ravi", "Kumar", userName, password);
+        signUpPage.signUpUser(faker.name().firstName(), faker.name().lastName(), userName, password);
         logger.info("UserName is : " + userName);
         logger.info("Password is : " + password);
-        loginPage.openLoginPage("http://localhost:" + this.port + "/login");
+        Thread.sleep(2000);
         loginPage.login(userName, password);
         Assertions.assertTrue(homePage.verifyLogin());
     }
@@ -91,12 +94,12 @@ public class LoginSignUpTest {
     public void loginLogoutTest() throws InterruptedException {
         signUpPage.openSignUpPage("http://localhost:" + this.port + "/signup");
         Assertions.assertTrue(signUpPage.isSignUpPage());
-        userName = RandomStringUtils.randomAlphanumeric(10);
+        userName = faker.name().username();
         password = RandomStringUtils.randomAlphanumeric(12);
-        signUpPage.signUpUser("Ravi", "Kumar", userName, password);
+        signUpPage.signUpUser(faker.name().firstName(), faker.name().lastName(), userName, password);
         logger.info("UserName is : " + userName);
         logger.info("Password is : " + password);
-        loginPage.openLoginPage("http://localhost:" + this.port + "/login");
+        Thread.sleep(2000);
         loginPage.login(userName, password);
         Assertions.assertTrue(homePage.verifyLogin());
         homePage.logout();

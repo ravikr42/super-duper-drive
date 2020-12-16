@@ -24,9 +24,6 @@ public class SignUpPage extends PageObject {
     @FindBy(id = "signUpBtn")
     private WebElement signUpBtn;
 
-    @FindBy(id = "login-link")
-    private WebElement loginLink;
-
     public SignUpPage(WebDriver driver) {
         super(driver);
     }
@@ -41,10 +38,6 @@ public class SignUpPage extends PageObject {
         usernameTxtBox.sendKeys(userName);
         passwordTxtBox.sendKeys(password);
         signUpBtn.submit();
-    }
-
-    public void navigateToLoginPageAfterSignUp() {
-        loginLink.click();
     }
 
     public boolean isSignUpPage() {
